@@ -1,4 +1,4 @@
-package com.algorithm.search
+package com.algorithm.bruteforce
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 /**
- * 線形探索アルゴリズムのテストクラス
+ * 全探索アルゴリズムのテストクラス
  */
-@DisplayName("線形探索")
-class LinearSearchTest {
+@DisplayName("全探索")
+class BruteForceSearchTest {
 
-    private lateinit var linearSearch: LinearSearch
+    private lateinit var bruteForceSearch: BruteForceSearch
 
     @BeforeEach
     fun setUp() {
-        linearSearch = LinearSearch()
+        bruteForceSearch = BruteForceSearch()
     }
 
     @Nested
@@ -32,7 +32,7 @@ class LinearSearchTest {
             val target = 30
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(2)
@@ -46,7 +46,7 @@ class LinearSearchTest {
             val target = 99
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(-1)
@@ -60,7 +60,7 @@ class LinearSearchTest {
             val target = 1
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(-1)
@@ -74,7 +74,7 @@ class LinearSearchTest {
             val target = 10
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(0)
@@ -88,7 +88,7 @@ class LinearSearchTest {
             val target = 50
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(4)
@@ -102,7 +102,7 @@ class LinearSearchTest {
             val target = 3
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(1)
@@ -116,7 +116,7 @@ class LinearSearchTest {
             val target = -7
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(2)
@@ -130,7 +130,7 @@ class LinearSearchTest {
             val target = 42
 
             // When
-            val result = linearSearch.search(array, target)
+            val result = bruteForceSearch.search(array, target)
 
             // Then
             assertThat(result).isEqualTo(0)
@@ -145,41 +145,41 @@ class LinearSearchTest {
         @DisplayName("複数要素から最小値を見つける")
         fun `複数要素の配列から最小値を返すこと`() {
             val array = intArrayOf(30, 10, 50, 20, 40)
-            assertThat(linearSearch.findMin(array)).isEqualTo(10)
+            assertThat(bruteForceSearch.findMin(array)).isEqualTo(10)
         }
 
         @Test
         @DisplayName("最小値が先頭にある場合")
         fun `最小値が先頭にある配列で正しく返すこと`() {
             val array = intArrayOf(1, 5, 3, 8)
-            assertThat(linearSearch.findMin(array)).isEqualTo(1)
+            assertThat(bruteForceSearch.findMin(array)).isEqualTo(1)
         }
 
         @Test
         @DisplayName("最小値が末尾にある場合")
         fun `最小値が末尾にある配列で正しく返すこと`() {
             val array = intArrayOf(5, 3, 8, 1)
-            assertThat(linearSearch.findMin(array)).isEqualTo(1)
+            assertThat(bruteForceSearch.findMin(array)).isEqualTo(1)
         }
 
         @Test
         @DisplayName("負の数を含む配列")
         fun `負の数を含む配列から最小値を返すこと`() {
             val array = intArrayOf(3, -5, 7, -10, 2)
-            assertThat(linearSearch.findMin(array)).isEqualTo(-10)
+            assertThat(bruteForceSearch.findMin(array)).isEqualTo(-10)
         }
 
         @Test
         @DisplayName("単一要素の配列")
         fun `単一要素の配列でその値を返すこと`() {
             val array = intArrayOf(42)
-            assertThat(linearSearch.findMin(array)).isEqualTo(42)
+            assertThat(bruteForceSearch.findMin(array)).isEqualTo(42)
         }
 
         @Test
         @DisplayName("空の配列で例外が発生する")
         fun `空の配列でIllegalArgumentExceptionを投げること`() {
-            assertThatThrownBy { linearSearch.findMin(intArrayOf()) }
+            assertThatThrownBy { bruteForceSearch.findMin(intArrayOf()) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("配列が空です")
         }
@@ -187,14 +187,14 @@ class LinearSearchTest {
 
     @Nested
     @DisplayName("2配列の最小合計値探索")
-    inner class FindMinSumTest {
+    inner class FindMinPairSumTest {
 
         @Test
         @DisplayName("それぞれの最小値の合計を返す")
         fun `2つの配列の最小値同士の合計を返すこと`() {
             val array1 = intArrayOf(30, 10, 50)
             val array2 = intArrayOf(20, 5, 40)
-            assertThat(linearSearch.findMinSum(array1, array2)).isEqualTo(15)
+            assertThat(bruteForceSearch.findMinPairSum(array1, array2)).isEqualTo(15)
         }
 
         @Test
@@ -202,7 +202,7 @@ class LinearSearchTest {
         fun `負の数を含む配列で正しく合計を返すこと`() {
             val array1 = intArrayOf(3, -5, 7)
             val array2 = intArrayOf(4, -2, 8)
-            assertThat(linearSearch.findMinSum(array1, array2)).isEqualTo(-7)
+            assertThat(bruteForceSearch.findMinPairSum(array1, array2)).isEqualTo(-7)
         }
 
         @Test
@@ -210,20 +210,20 @@ class LinearSearchTest {
         fun `単一要素同士の配列で合計を返すこと`() {
             val array1 = intArrayOf(10)
             val array2 = intArrayOf(20)
-            assertThat(linearSearch.findMinSum(array1, array2)).isEqualTo(30)
+            assertThat(bruteForceSearch.findMinPairSum(array1, array2)).isEqualTo(30)
         }
 
         @Test
         @DisplayName("1つ目の配列が空の場合に例外が発生する")
         fun `1つ目の配列が空の場合にIllegalArgumentExceptionを投げること`() {
-            assertThatThrownBy { linearSearch.findMinSum(intArrayOf(), intArrayOf(1, 2)) }
+            assertThatThrownBy { bruteForceSearch.findMinPairSum(intArrayOf(), intArrayOf(1, 2)) }
                 .isInstanceOf(IllegalArgumentException::class.java)
         }
 
         @Test
         @DisplayName("2つ目の配列が空の場合に例外が発生する")
         fun `2つ目の配列が空の場合にIllegalArgumentExceptionを投げること`() {
-            assertThatThrownBy { linearSearch.findMinSum(intArrayOf(1, 2), intArrayOf()) }
+            assertThatThrownBy { bruteForceSearch.findMinPairSum(intArrayOf(1, 2), intArrayOf()) }
                 .isInstanceOf(IllegalArgumentException::class.java)
         }
     }
