@@ -114,4 +114,48 @@ class FibonacciTest {
                 .isInstanceOf(IllegalArgumentException::class.java)
         }
     }
+
+    @Nested
+    @DisplayName("メモ化再帰版")
+    inner class FibMemoTest {
+
+        @Test
+        @DisplayName("F(0) = 0")
+        fun `F(0)は0を返すこと`() {
+            assertThat(fibonacci.fibMemo(0)).isEqualTo(0)
+        }
+
+        @Test
+        @DisplayName("F(1) = 1")
+        fun `F(1)は1を返すこと`() {
+            assertThat(fibonacci.fibMemo(1)).isEqualTo(1)
+        }
+
+        @Test
+        @DisplayName("F(5) = 5")
+        fun `F(5)は5を返すこと`() {
+            assertThat(fibonacci.fibMemo(5)).isEqualTo(5)
+        }
+
+        @Test
+        @DisplayName("F(10) = 55")
+        fun `F(10)は55を返すこと`() {
+            assertThat(fibonacci.fibMemo(10)).isEqualTo(55)
+        }
+
+        @Test
+        @DisplayName("再帰版と同じ結果を返す")
+        fun `再帰版と同じ結果を返すこと`() {
+            for (i in 0..20) {
+                assertThat(fibonacci.fibMemo(i)).isEqualTo(fibonacci.fib(i))
+            }
+        }
+
+        @Test
+        @DisplayName("負の数の場合に例外が発生する")
+        fun `負の数の場合にIllegalArgumentExceptionを投げること`() {
+            assertThatThrownBy { fibonacci.fibMemo(-1) }
+                .isInstanceOf(IllegalArgumentException::class.java)
+        }
+    }
 }

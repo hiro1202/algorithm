@@ -45,4 +45,32 @@ class Fibonacci {
         }
         return current
     }
+
+    /**
+     * n番目のフィボナッチ数をメモ化再帰（動的計画法）で求める
+     * 一度計算した結果を配列に保存し、同じ計算を繰り返さない
+     * 時間計算量: O(n)
+     * 空間計算量: O(n)（メモ用の配列）
+     * @param n フィボナッチ数列のインデックス（0始まり）
+     * @return n番目のフィボナッチ数
+     * @throws IllegalArgumentException nが負の数の場合
+     */
+    fun fibMemo(n: Int): Int {
+        require(n >= 0) { "nは0以上の整数を指定してください" }
+        // メモ用の配列（-1は未計算を表す）
+        val memo = IntArray(n + 1) { -1 }
+        return fibMemoHelper(n, memo)
+    }
+
+    private fun fibMemoHelper(n: Int, memo: IntArray): Int {
+        // 計算済みならメモから返す
+        if (memo[n] != -1) return memo[n]
+        // ベースケース
+        val result = if (n == 0) 0
+        else if (n == 1) 1
+        // 再帰ステップ（結果はメモに保存される）
+        else fibMemoHelper(n - 1, memo) + fibMemoHelper(n - 2, memo)
+        memo[n] = result
+        return result
+    }
 }
