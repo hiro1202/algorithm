@@ -9,6 +9,8 @@ package com.algorithm.recursion
 class SumRecursion {
 
     /**
+     * 4.1 1 から N までの総和を計算する再帰関数
+     *
      * 1からnまでの総和を再帰的に求める
      * @param n 総和の上限値
      * @return 1からnまでの総和

@@ -10,6 +10,8 @@ package com.algorithm.recursion
 class Fibonacci {
 
     /**
+     * 4.5 フィボナッチ数列を求める再帰関数
+     *
      * n番目のフィボナッチ数を再帰的に求める
      * @param n フィボナッチ数列のインデックス（0始まり）
      * @return n番目のフィボナッチ数

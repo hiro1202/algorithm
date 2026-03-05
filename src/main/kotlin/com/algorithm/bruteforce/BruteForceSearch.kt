@@ -9,6 +9,9 @@ package com.algorithm.bruteforce
 class BruteForceSearch {
 
     /**
+     * 3.2 特定の要素の存在する「添字」も取得する
+     *
+     * 線形探索法
      * 全探索を実行する
      * @param array 探索対象の配列
      * @param target 探索する値
@@ -24,6 +27,8 @@ class BruteForceSearch {
     }
 
     /**
+     * 3.3 最小値を求める
+     *
      * 全探索で最小値を求める
      * @param array 探索対象の配列
      * @return 最小値
@@ -43,6 +48,8 @@ class BruteForceSearch {
     }
 
     /**
+     * 3.4 ペア和の最小値を求める
+     *
      * 2つの配列からそれぞれ1つずつ要素を選んだときの合計の最小値を求める
      * 全てのペアを総当たりで比較する
      * 時間計算量: O(n * m)
