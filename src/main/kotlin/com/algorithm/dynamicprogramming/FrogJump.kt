@@ -4,8 +4,6 @@ import kotlin.math.abs
 import kotlin.math.min
 
 /**
- * 5.1 Frog 問題を動的計画法で解く
- *
  * カエルの足場ジャンプ問題（Frog 1）の実装
  * N個の足場があり、各足場に高さが設定されている
  * カエルは1つまたは2つ先の足場にジャンプでき、コストは高さの差の絶対値
@@ -16,6 +14,8 @@ import kotlin.math.min
 class FrogJump {
 
     /**
+     * 5.1 Frog 問題を動的計画法で解く
+     *
      * 最初の足場から最後の足場までの最小コストを求める
      * @param h 各足場の高さの配列
      * @return 最小コスト

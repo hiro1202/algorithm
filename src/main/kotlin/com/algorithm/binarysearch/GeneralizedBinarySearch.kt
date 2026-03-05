@@ -1,8 +1,6 @@
 package com.algorithm.binarysearch
 
 /**
- * 6.2 一般化した二分探索法の基本形
- *
  * 条件判定関数 P(x) を使う一般化二分探索
  * P(left) = false, P(right) = true を満たす区間から、
  * P(x) = true となる最小の x を探索する。
@@ -12,6 +10,8 @@ package com.algorithm.binarysearch
 class GeneralizedBinarySearch {
 
     /**
+     * 6.2 一般化した二分探索法の基本形
+     *
      * 実行例:
      * val answer = searchFirstTrue(0, 100) { x -> x >= 10 }
      * // answer == 10

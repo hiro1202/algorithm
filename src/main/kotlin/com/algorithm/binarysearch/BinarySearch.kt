@@ -1,8 +1,6 @@
 package com.algorithm.binarysearch
 
 /**
- * 6.1 配列から目的の値を検索する二分探索法
- *
  * 二分探索アルゴリズムの実装
  * ソート済み配列に対して中央要素を比較しながら探索範囲を半分ずつ絞り込む
  * 時間計算量: O(log n)
@@ -11,6 +9,8 @@ package com.algorithm.binarysearch
 class BinarySearch {
 
     /**
+     * 6.1 配列から目的の値を検索する二分探索法
+     *
      * 二分探索を実行する
      * @param array 探索対象のソート済み配列
      * @param target 探索する値

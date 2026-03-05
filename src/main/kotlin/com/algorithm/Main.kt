@@ -2,6 +2,7 @@ package com.algorithm
 
 import com.algorithm.binarysearch.BinarySearch
 import com.algorithm.binarysearch.GeneralizedBinarySearch
+import com.algorithm.greedy.CoinChange
 import com.algorithm.sort.BubbleSort
 import com.algorithm.sort.CocktailSort
 
@@ -45,4 +46,13 @@ fun main() {
     val generalizedBinarySearch = GeneralizedBinarySearch()
     val firstTrue = generalizedBinarySearch.searchFirstTrue(0, 100) { x -> x >= 10 }
     println("P(x) = x >= 10 を満たす最小の x: $firstTrue")
+
+    // 貪欲法（コイン問題）のデモ
+    println("\n--- 貪欲法: コイン問題 ---")
+    val coinChange = CoinChange()
+    val amount = 1234
+    val limits = listOf(10, 10, 10, 10, 10, 10)
+    println("金額: ${amount}円")
+    println("硬貨の枚数制限: 各10枚")
+    println("最小枚数: ${coinChange.minCoins(amount, limits)}")
 }
