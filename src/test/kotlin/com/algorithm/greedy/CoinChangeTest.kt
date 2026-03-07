@@ -25,8 +25,8 @@ class CoinChangeTest {
     inner class NormalCases {
 
         @Test
-        @DisplayName("各硬貨を1枚ずつ使うケース")
-        fun `各硬貨を1枚ずつ使って666円を支払えること`() {
+        @DisplayName("各硬貨を1枚ずつ使って666円を支払えること")
+        fun payWithOneOfEachCoin() {
             // Given: 666円 = 500 + 100 + 50 + 10 + 5 + 1
             val amount = 666
             val limits = listOf(1, 1, 1, 1, 1, 1)
@@ -39,8 +39,8 @@ class CoinChangeTest {
         }
 
         @Test
-        @DisplayName("500円硬貨のみで支払うケース")
-        fun `500円硬貨のみで1000円を支払えること`() {
+        @DisplayName("500円硬貨のみで1000円を支払えること")
+        fun payWithOnly500YenCoins() {
             // Given
             val amount = 1000
             val limits = listOf(10, 0, 0, 0, 0, 0)
@@ -53,8 +53,8 @@ class CoinChangeTest {
         }
 
         @Test
-        @DisplayName("1円硬貨のみで支払うケース")
-        fun `1円硬貨のみで5円を支払えること`() {
+        @DisplayName("1円硬貨のみで5円を支払えること")
+        fun payWithOnly1YenCoins() {
             // Given
             val amount = 5
             val limits = listOf(0, 0, 0, 0, 0, 10)
@@ -67,8 +67,8 @@ class CoinChangeTest {
         }
 
         @Test
-        @DisplayName("枚数制限により大きい硬貨を使い切るケース")
-        fun `500円が1枚しかないとき残りを小さい硬貨で補えること`() {
+        @DisplayName("500円が1枚しかないとき残りを小さい硬貨で補えること")
+        fun fallbackToSmallerCoinsWhenLargeRunsOut() {
             // Given: 1000円を500円1枚 + 100円5枚で支払う
             val amount = 1000
             val limits = listOf(1, 5, 0, 0, 0, 0)
@@ -81,8 +81,8 @@ class CoinChangeTest {
         }
 
         @Test
-        @DisplayName("金額が0の場合")
-        fun `金額が0のとき0枚を返すこと`() {
+        @DisplayName("金額が0のとき0枚を返すこと")
+        fun returnZeroForZeroAmount() {
             // Given
             val amount = 0
             val limits = listOf(10, 10, 10, 10, 10, 10)
@@ -95,8 +95,8 @@ class CoinChangeTest {
         }
 
         @Test
-        @DisplayName("十分な枚数がある場合に最小枚数で支払う")
-        fun `十分な枚数があるとき最小枚数で支払えること`() {
+        @DisplayName("十分な枚数があるとき最小枚数で支払えること")
+        fun payWithMinimumCoinsWhenSufficient() {
             // Given: 615円 = 500×1 + 100×1 + 10×1 + 5×1 = 4枚
             val amount = 615
             val limits = listOf(10, 10, 10, 10, 10, 10)
@@ -114,8 +114,8 @@ class CoinChangeTest {
     inner class ImpossibleCases {
 
         @Test
-        @DisplayName("硬貨が足りない場合")
-        fun `硬貨が足りないとき-1を返すこと`() {
+        @DisplayName("硬貨が足りないとき-1を返すこと")
+        fun returnMinusOneWhenInsufficientCoins() {
             // Given: 500円を払いたいが100円が4枚しかない
             val amount = 500
             val limits = listOf(0, 4, 0, 0, 0, 0)
@@ -128,8 +128,8 @@ class CoinChangeTest {
         }
 
         @Test
-        @DisplayName("全ての硬貨が0枚の場合")
-        fun `全ての硬貨が0枚で金額が正のとき-1を返すこと`() {
+        @DisplayName("全ての硬貨が0枚で金額が正のとき-1を返すこと")
+        fun returnMinusOneWhenAllCoinsZero() {
             // Given
             val amount = 100
             val limits = listOf(0, 0, 0, 0, 0, 0)
@@ -147,16 +147,16 @@ class CoinChangeTest {
     inner class ErrorCases {
 
         @Test
-        @DisplayName("金額が負の場合に例外が発生する")
-        fun `金額が負のときIllegalArgumentExceptionを投げること`() {
+        @DisplayName("金額が負のときIllegalArgumentExceptionを投げること")
+        fun throwExceptionForNegativeAmount() {
             assertThatThrownBy { coinChange.minCoins(-1, listOf(1, 1, 1, 1, 1, 1)) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("金額は0以上である必要があります")
         }
 
         @Test
-        @DisplayName("枚数制限のサイズが不正な場合に例外が発生する")
-        fun `枚数制限のサイズが不正なときIllegalArgumentExceptionを投げること`() {
+        @DisplayName("枚数制限のサイズが不正なときIllegalArgumentExceptionを投げること")
+        fun throwExceptionForInvalidLimitsSize() {
             assertThatThrownBy { coinChange.minCoins(100, listOf(1, 1, 1)) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("枚数制限は6種類分必要です")

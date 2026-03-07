@@ -16,8 +16,8 @@ class BinarySearchTest {
     }
 
     @Test
-    @DisplayName("配列内に存在する値を探索できる")
-    fun `配列内に存在する値のインデックスを返すこと`() {
+    @DisplayName("配列内に存在する値のインデックスを返すこと")
+    fun returnIndexForExistingValue() {
         val array = intArrayOf(3, 5, 8, 10, 14, 17, 21, 39)
 
         assertThat(binarySearch.search(array, 10)).isEqualTo(3)
@@ -26,8 +26,8 @@ class BinarySearchTest {
     }
 
     @Test
-    @DisplayName("配列内に存在しない値は-1を返す")
-    fun `配列内に存在しない値の場合-1を返すこと`() {
+    @DisplayName("配列内に存在しない値の場合-1を返すこと")
+    fun returnMinusOneForNonExistingValue() {
         val array = intArrayOf(3, 5, 8, 10, 14, 17, 21, 39)
 
         assertThat(binarySearch.search(array, -100)).isEqualTo(-1)
@@ -36,8 +36,8 @@ class BinarySearchTest {
     }
 
     @Test
-    @DisplayName("空配列の場合は-1を返す")
-    fun `空配列の場合-1を返すこと`() {
+    @DisplayName("空配列の場合-1を返すこと")
+    fun returnMinusOneForEmptyArray() {
         val array = intArrayOf()
 
         assertThat(binarySearch.search(array, 1)).isEqualTo(-1)

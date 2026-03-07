@@ -20,42 +20,42 @@ class SumRecursionTest {
     }
 
     @Test
-    @DisplayName("n=1のとき1を返す")
-    fun `n=1のとき1を返すこと`() {
+    @DisplayName("n=1のとき1を返すこと")
+    fun returnOneForN1() {
         assertThat(sumRecursion.sum(1)).isEqualTo(1)
     }
 
     @Test
-    @DisplayName("n=5のとき15を返す")
-    fun `n=5のとき15を返すこと`() {
+    @DisplayName("n=5のとき15を返すこと")
+    fun returnFifteenForN5() {
         // 1 + 2 + 3 + 4 + 5 = 15
         assertThat(sumRecursion.sum(5)).isEqualTo(15)
     }
 
     @Test
-    @DisplayName("n=10のとき55を返す")
-    fun `n=10のとき55を返すこと`() {
+    @DisplayName("n=10のとき55を返すこと")
+    fun returnFiftyFiveForN10() {
         // 1 + 2 + ... + 10 = 55
         assertThat(sumRecursion.sum(10)).isEqualTo(55)
     }
 
     @Test
-    @DisplayName("n=100のとき5050を返す")
-    fun `n=100のとき5050を返すこと`() {
+    @DisplayName("n=100のとき5050を返すこと")
+    fun returnFiveThousandFiftyForN100() {
         assertThat(sumRecursion.sum(100)).isEqualTo(5050)
     }
 
     @Test
-    @DisplayName("nが0以下の場合に例外が発生する")
-    fun `nが0以下の場合にIllegalArgumentExceptionを投げること`() {
+    @DisplayName("nが0以下の場合にIllegalArgumentExceptionを投げること")
+    fun throwExceptionForZero() {
         assertThatThrownBy { sumRecursion.sum(0) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("nは1以上の整数を指定してください")
     }
 
     @Test
-    @DisplayName("nが負の数の場合に例外が発生する")
-    fun `nが負の数の場合にIllegalArgumentExceptionを投げること`() {
+    @DisplayName("nが負の数の場合にIllegalArgumentExceptionを投げること")
+    fun throwExceptionForNegativeInput() {
         assertThatThrownBy { sumRecursion.sum(-5) }
             .isInstanceOf(IllegalArgumentException::class.java)
     }

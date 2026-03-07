@@ -25,8 +25,8 @@ class BruteForceSearchTest {
     inner class SearchTest {
 
         @Test
-        @DisplayName("要素が見つかる場合のテスト")
-        fun `配列内に存在する要素を見つけられること`() {
+        @DisplayName("配列内に存在する要素を見つけられること")
+        fun findExistingElement() {
             // Given
             val array = intArrayOf(10, 20, 30, 40, 50)
             val target = 30
@@ -39,8 +39,8 @@ class BruteForceSearchTest {
         }
 
         @Test
-        @DisplayName("要素が見つからない場合のテスト")
-        fun `配列内に存在しない要素の場合-1を返すこと`() {
+        @DisplayName("配列内に存在しない要素の場合-1を返すこと")
+        fun returnMinusOneForNonExistingElement() {
             // Given
             val array = intArrayOf(10, 20, 30, 40, 50)
             val target = 99
@@ -53,8 +53,8 @@ class BruteForceSearchTest {
         }
 
         @Test
-        @DisplayName("空の配列のテスト")
-        fun `空の配列に対して-1を返すこと`() {
+        @DisplayName("空の配列に対して-1を返すこと")
+        fun returnMinusOneForEmptyArray() {
             // Given
             val array = intArrayOf()
             val target = 1
@@ -67,8 +67,8 @@ class BruteForceSearchTest {
         }
 
         @Test
-        @DisplayName("先頭の要素を探索するテスト")
-        fun `先頭の要素を見つけられること`() {
+        @DisplayName("先頭の要素を見つけられること")
+        fun findFirstElement() {
             // Given
             val array = intArrayOf(10, 20, 30, 40, 50)
             val target = 10
@@ -81,8 +81,8 @@ class BruteForceSearchTest {
         }
 
         @Test
-        @DisplayName("末尾の要素を探索するテスト")
-        fun `末尾の要素を見つけられること`() {
+        @DisplayName("末尾の要素を見つけられること")
+        fun findLastElement() {
             // Given
             val array = intArrayOf(10, 20, 30, 40, 50)
             val target = 50
@@ -95,8 +95,8 @@ class BruteForceSearchTest {
         }
 
         @Test
-        @DisplayName("重複する値がある場合、最初のインデックスを返すテスト")
-        fun `重複する値がある場合に最初のインデックスを返すこと`() {
+        @DisplayName("重複する値がある場合に最初のインデックスを返すこと")
+        fun returnFirstIndexForDuplicateValues() {
             // Given
             val array = intArrayOf(5, 3, 7, 3, 9)
             val target = 3
@@ -109,8 +109,8 @@ class BruteForceSearchTest {
         }
 
         @Test
-        @DisplayName("負の数を探索するテスト")
-        fun `負の数を見つけられること`() {
+        @DisplayName("負の数を見つけられること")
+        fun findNegativeNumber() {
             // Given
             val array = intArrayOf(-5, 3, -7, 0, 9)
             val target = -7
@@ -123,8 +123,8 @@ class BruteForceSearchTest {
         }
 
         @Test
-        @DisplayName("単一要素の配列で見つかるテスト")
-        fun `単一要素の配列で要素を見つけられること`() {
+        @DisplayName("単一要素の配列で要素を見つけられること")
+        fun findElementInSingleElementArray() {
             // Given
             val array = intArrayOf(42)
             val target = 42
@@ -142,43 +142,43 @@ class BruteForceSearchTest {
     inner class FindMinTest {
 
         @Test
-        @DisplayName("複数要素から最小値を見つける")
-        fun `複数要素の配列から最小値を返すこと`() {
+        @DisplayName("複数要素の配列から最小値を返すこと")
+        fun findMinFromMultipleElements() {
             val array = intArrayOf(30, 10, 50, 20, 40)
             assertThat(bruteForceSearch.findMin(array)).isEqualTo(10)
         }
 
         @Test
-        @DisplayName("最小値が先頭にある場合")
-        fun `最小値が先頭にある配列で正しく返すこと`() {
+        @DisplayName("最小値が先頭にある配列で正しく返すこと")
+        fun findMinAtHead() {
             val array = intArrayOf(1, 5, 3, 8)
             assertThat(bruteForceSearch.findMin(array)).isEqualTo(1)
         }
 
         @Test
-        @DisplayName("最小値が末尾にある場合")
-        fun `最小値が末尾にある配列で正しく返すこと`() {
+        @DisplayName("最小値が末尾にある配列で正しく返すこと")
+        fun findMinAtTail() {
             val array = intArrayOf(5, 3, 8, 1)
             assertThat(bruteForceSearch.findMin(array)).isEqualTo(1)
         }
 
         @Test
-        @DisplayName("負の数を含む配列")
-        fun `負の数を含む配列から最小値を返すこと`() {
+        @DisplayName("負の数を含む配列から最小値を返すこと")
+        fun findMinWithNegativeNumbers() {
             val array = intArrayOf(3, -5, 7, -10, 2)
             assertThat(bruteForceSearch.findMin(array)).isEqualTo(-10)
         }
 
         @Test
-        @DisplayName("単一要素の配列")
-        fun `単一要素の配列でその値を返すこと`() {
+        @DisplayName("単一要素の配列でその値を返すこと")
+        fun findMinInSingleElementArray() {
             val array = intArrayOf(42)
             assertThat(bruteForceSearch.findMin(array)).isEqualTo(42)
         }
 
         @Test
-        @DisplayName("空の配列で例外が発生する")
-        fun `空の配列でIllegalArgumentExceptionを投げること`() {
+        @DisplayName("空の配列でIllegalArgumentExceptionを投げること")
+        fun throwExceptionForEmptyArray() {
             assertThatThrownBy { bruteForceSearch.findMin(intArrayOf()) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("配列が空です")
@@ -190,39 +190,39 @@ class BruteForceSearchTest {
     inner class FindMinPairSumTest {
 
         @Test
-        @DisplayName("それぞれの最小値の合計を返す")
-        fun `2つの配列の最小値同士の合計を返すこと`() {
+        @DisplayName("2つの配列の最小値同士の合計を返すこと")
+        fun returnSumOfMinValues() {
             val array1 = intArrayOf(30, 10, 50)
             val array2 = intArrayOf(20, 5, 40)
             assertThat(bruteForceSearch.findMinPairSum(array1, array2)).isEqualTo(15)
         }
 
         @Test
-        @DisplayName("負の数を含む配列")
-        fun `負の数を含む配列で正しく合計を返すこと`() {
+        @DisplayName("負の数を含む配列で正しく合計を返すこと")
+        fun returnSumWithNegativeNumbers() {
             val array1 = intArrayOf(3, -5, 7)
             val array2 = intArrayOf(4, -2, 8)
             assertThat(bruteForceSearch.findMinPairSum(array1, array2)).isEqualTo(-7)
         }
 
         @Test
-        @DisplayName("単一要素同士の配列")
-        fun `単一要素同士の配列で合計を返すこと`() {
+        @DisplayName("単一要素同士の配列で合計を返すこと")
+        fun returnSumOfSingleElementArrays() {
             val array1 = intArrayOf(10)
             val array2 = intArrayOf(20)
             assertThat(bruteForceSearch.findMinPairSum(array1, array2)).isEqualTo(30)
         }
 
         @Test
-        @DisplayName("1つ目の配列が空の場合に例外が発生する")
-        fun `1つ目の配列が空の場合にIllegalArgumentExceptionを投げること`() {
+        @DisplayName("1つ目の配列が空の場合にIllegalArgumentExceptionを投げること")
+        fun throwExceptionWhenFirstArrayEmpty() {
             assertThatThrownBy { bruteForceSearch.findMinPairSum(intArrayOf(), intArrayOf(1, 2)) }
                 .isInstanceOf(IllegalArgumentException::class.java)
         }
 
         @Test
-        @DisplayName("2つ目の配列が空の場合に例外が発生する")
-        fun `2つ目の配列が空の場合にIllegalArgumentExceptionを投げること`() {
+        @DisplayName("2つ目の配列が空の場合にIllegalArgumentExceptionを投げること")
+        fun throwExceptionWhenSecondArrayEmpty() {
             assertThatThrownBy { bruteForceSearch.findMinPairSum(intArrayOf(1, 2), intArrayOf()) }
                 .isInstanceOf(IllegalArgumentException::class.java)
         }
