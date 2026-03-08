@@ -2,6 +2,7 @@ package com.algorithm
 
 import com.algorithm.binarysearch.BinarySearch
 import com.algorithm.binarysearch.GeneralizedBinarySearch
+import com.algorithm.dynamicprogramming.Knapsack
 import com.algorithm.greedy.CoinChange
 import com.algorithm.sort.BubbleSort
 import com.algorithm.sort.CocktailSort
@@ -55,4 +56,14 @@ fun main() {
     println("金額: ${amount}円")
     println("硬貨の枚数制限: 各10枚")
     println("最小枚数: ${coinChange.minCoins(amount, limits)}")
+
+    // ナップサック問題のデモ
+    println("\n--- 動的計画法: ナップサック問題 ---")
+    val knapsack = Knapsack()
+    val weights = longArrayOf(2, 1, 3, 2)
+    val values = longArrayOf(3, 2, 6, 1)
+    val capacity = 5
+    println("品物: 重さ=${weights.contentToString()}, 価値=${values.contentToString()}")
+    println("容量: $capacity")
+    println("最大価値: ${knapsack.solve(weights, values, capacity)}")
 }
