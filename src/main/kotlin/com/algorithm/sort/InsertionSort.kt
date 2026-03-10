@@ -9,6 +9,7 @@ package com.algorithm.sort
 class InsertionSort {
 
     /**
+     * 12.2 挿入ソートの実装
      * 挿入ソートを実行する
      *
      * 配列の2番目の要素から順に、整列済み部分の正しい位置に挿入していく。
